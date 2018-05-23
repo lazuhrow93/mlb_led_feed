@@ -1,0 +1,107 @@
+#!/usr/bin/env python
+
+
+#just a python file with the dictionary of team abreviations.
+team_abrev = {
+	'Mets'		:'NYM',
+	'Nationals'	:'NAT',
+	'Athletics'	:'0AK',
+	'Angels'	:'LAA',
+	'Dodgers'	:'LAD',
+	'Giants'	:'SF',
+	'Rockies'	:'C0L',
+	'Braves'	:'ATL',
+	'Rangers'	:'TEX',
+	'Blue jays'	:'T0R',
+	'Cardinals'	:'STL',
+	'D-backs'	:'ARI',
+	'Twins'		:'MiN',
+	'Mariners'	:'SEA',
+	'Padres'	:'SD',
+	'Astros'	:'H0U',
+	'White Sox'	:'CWS',
+	'Tigers'	:'DET',
+	'Brewers'	:'MIL',
+	'Cubs'		:'CHC',
+	'Marlins'	:'MIA',
+	'Phillies'	:'PHI',
+	'Pirates'	:'PIT',
+	'Reds'		:'CIN',
+	'Indians'	:'CLE',
+	'Royals'	:'KC',
+	'Red sox'	:'B0S',
+	'Rays'		:'TB',
+	'Orioles'	:'BAL',
+	'Yankees'	:'NYY'
+
+}
+
+team_colors_text = {
+	'Angels' 	: (255,255,255),
+	'Astros' 	: (0,45,98),
+	'Athletics' : (255,184,28),
+	'Blue Jays' : (255,255,255),
+	'Braves' 	: (186,12,47),
+	'Brewers' 	: (133,113,77),
+	'Cardinals' : (255,255,255),
+	'Cubs' 		: (200,16,46),
+	'D-Backs' 	: (227,212,173),
+	'Dodgers' 	: (255,255,255),
+	'Giants' 	: (39,37,31),
+	'Indians' 	: (213,0,50),
+	'Mariners' 	: (0,104,94),
+	'Marlins' 	: (250,70,22),
+	'Mets' 		: (252,76,2),
+	'Nationals' : (186,18,43),
+	'Orioles' 	: (252,76,2),
+	'Padres' 	: (162,170,173),
+	'Philies' 	: (255,255,255),
+	'Pirates' 	: (255,199,44),
+	'Rangers' 	: (192,17,31),
+	'Rays' 		: (143,188,230),
+	'Red Sox' 	: (255,255,255),
+	'Reds' 		: (255,255,255),
+	'Rockies' 	: (196,206,212),
+	'Royals' 	: (189,155,96),
+	'Tigers' 	: (255,255,255),
+	'Twins' 	: (186,12,46),
+	'White Sox' : (138,141,143),
+	'Yankees' 	: (255,255,255)
+
+
+}
+
+team_colors_background = {
+	'Angels' 	: (186,0,33),
+	'Astros' 	: (235,110,31),
+	'Athletics' : (3,70,56),
+	'Blue Jays' : (19,74,142),
+	'Braves' 	: (12,35,64),
+	'Brewers' 	: (19,41,75),
+	'Cardinals' : (186,12,47),
+	'Cubs' 		: (0,47,108),
+	'D-Backs' 	: (167,25,48),
+	'Dodgers' 	: (0,47,108),
+	'Giants' 	: (250,70,22),
+	'Indians' 	: (12,35,64),
+	'Mariners' 	: (12,35,64),
+	'Marlins' 	: (0,156,166),
+	'Mets' 		: (0,45,114),
+	'Nationals' : (20,34,90),
+	'Orioles' 	: (39,37,31),
+	'Padres' 	: (4,30,66),
+	'Philies' 	: (186,12,47),
+	'Pirates' 	: (39,37,31),
+	'Rangers' 	: (0,50,120),
+	'Rays' 		: (9,44,92),
+	'Red Sox' 	: (200,16,46),
+	'Reds' 		: (213,0,50),
+	'Rockies' 	: (51,0,114),
+	'Royals' 	: (26,71,132),
+	'Tigers' 	: (12,35,64),
+	'Twins' 	: (12,35,65),
+	'White Sox' : (39,37,31),
+	'Yankees' 	: (0,0,0)
+
+
+}
