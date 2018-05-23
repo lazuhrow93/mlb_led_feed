@@ -1,5 +1,5 @@
 from __future__ import print_function
-from Team_Abrev import *
+from Team_Attr import *
 import mlbgame
 import datetime
 import lxml.etree as etree
@@ -50,12 +50,23 @@ CURRENT_TEAM_AWAY_STATS = {
 }
 
 #putting these the same will return game of the day for that team
-HOME_TEAM = 'Astros' 
-AWAY_TEAM = 'Astros'
+HOME_TEAM = 'Yankees' 
+AWAY_TEAM = 'Yankees'
+
+def refresh_day_time() : #refresh the current day
+
+	global now
+	global today_year
+	global today_month
+	global today_day
+
+	now = datetime.datetime.now()
+	today_year = now.year
+	today_month = now.month
+	today_day = now.day
 
 def display_LED_update_baseRunners(first,second,third) :
 	draw_base_runners(first,second,third)
-
 
 def display_LED_update_batter() :
 
@@ -327,7 +338,7 @@ def before_game() :
 		time.sleep(30)
 
 	#Game is either starting/in_progress, init the board with team names, inning numbers, and "R H E"
-	init_board(team_abrev[game_info[0].home_team], team_abrev[game_info[0].away_team])
+	init_board(game_info[0].home_team, game_info[0].away_team)
 
 def game_in_progress() :
 
@@ -376,10 +387,9 @@ def game_in_progress() :
 			status_of_game = mlbgame.overview(curr_game_id)
 			midOrEnd = str(status_of_game.inning_state)
 
-		#time.sleep(5) #update scores every 30s
+		time.sleep(10) #update scores every 30s
 		#game_info = mlbgame.day(today_year,today_month,today_day, HOME_TEAM, AWAY_TEAM)
 		status_of_game = mlbgame.overview(curr_game_id)
-
 
 def post_game() :
 	game_info = mlbgame.day(today_year,today_month,today_day, HOME_TEAM, AWAY_TEAM)
@@ -389,12 +399,13 @@ def post_game() :
 
 	if(debug) : print("In the post_game state: ")
 
-	game_info = mlbgame.day(today_year,today_month,today_day, HOME_TEAM, AWAY_TEAM)
+	#game_info = mlbgame.day(today_year,today_month,today_day, HOME_TEAM, AWAY_TEAM)
 	
 	while(game_info[0].game_status == "FINAL") :
 		if(debug) : print("FINAL SCORE: [" + str(status_of_game.home_team_runs) + "][" + str(status_of_game.away_team_runs) + "]")
 		init_post_game_board(str(status_of_game.home_team_runs), str(status_of_game.away_team_runs), team_abrev[status_of_game.home_team_name], team_abrev[status_of_game.away_team_name])
-		time.sleep(600)
+		time.sleep(1800) #check every 30 mins
+		refresh_day_time()
 		game_info = mlbgame.day(today_year,today_month,today_day, HOME_TEAM, AWAY_TEAM)
 
 def no_game() :
