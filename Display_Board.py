@@ -5,8 +5,9 @@ from PIL import ImageDraw, ImageFont
 from rgbmatrix import graphics
 import time
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
+from Team_Attr import *
 
-
+#global Variables, since we want to matrix to always be on. 
 options = RGBMatrixOptions()
 options.rows = 32
 options.chain_length = 2
@@ -24,7 +25,6 @@ def init_board (homeTeam, awayTeam) :
 
 	#####################################################################
 	#initialze scoreboard template 
-	print("HELLO, INITIALIZEING BOARD HERE")
 	draw.rectangle((-1, 1, 112, 25), fill=(0, 0, 0), outline=(255, 255, 0))
 	draw.line((86, 1, 86, 25), fill=(255, 255, 0))
 	draw.line((0, 9, 112, 9), fill=(255, 255, 0))
@@ -34,11 +34,11 @@ def init_board (homeTeam, awayTeam) :
 	#####################################################################
 	#initialize team name 
 	teamNamesFont = ImageFont.truetype('pixelated.ttf', size = 8)
-	#draw.rectangle((0,10, 12, 16), fill=(255,123,6), outline = (255,165,0))
-	draw.text((0, 9), awayTeam, fill=(0,0,255), font=teamNamesFont)
+	draw.rectangle((0,10, 12, 16), fill=team_colors_background[awayTeam], outline = team_colors_background[awayTeam])
+	draw.text((0, 9), team_abrev[awayTeam], fill=team_colors_text[awayTeam], font=teamNamesFont)
 
-	#draw.rectangle((0,18, 12, 24), fill=(255,0,0), outline = (255,0,0))
-	draw.text((0, 17), homeTeam, fill=(255,255,255), font=teamNamesFont)
+	draw.rectangle((0,18, 12, 24), fill=team_colors_background[homeTeam], outline = team_colors_background[homeTeam])
+	draw.text((0, 17), team_abrev[homeTeam], fill=team_colors_text[homeTeam], font=teamNamesFont)
 
 	fontYValue = 1
 
@@ -133,6 +133,73 @@ def init_post_game_board(homeScore, awayScore, homeTeam, awayTeam) :
 
 	matrix.Clear()
 	matrix.SetImage(image, 0, 0)
+
+
+def draw_new_extra_innings_score(curr_inning, curr_home_scores, curr_away_scores) :
+
+
+	#shift innings numbers one space to the left to make room for extra innings
+	newInningsImage = Image.new("RGB", (72, 7)) #create image for the innings
+	drawInnings = ImageDraw.Draw(newInningsImage) 
+
+	inningFonts = ImageFont.truetype('pixelated.ttf', size = 8)
+
+	xCoorZeroed = 2
+	fontYValue = -1
+
+	for inning in range(curr_inning-8,curr_inning+1) : #from first innign to be displayed, all the way to the current extra inning 
+		
+		if(len(str(inning)) > 1) : #center double digit innings
+			draw.text((xCoorZeroed-2,fontYValue), str(inning), fill=(255,255,255), font=inningFonts)
+		else :
+			draw.text((xCoorZeroed, fontYValue), str(inning), fill=(255,255,255), font=inningFonts)
+
+		xCoorZeroed = xCoorZeroed + 8
+
+
+	#Display the appropriate scores under their innings. Only show 9 innings up to current inning
+	awayScoresImage = Image.new("RGB", (72, 7)) #create image for the innings
+	drawAwayScores = ImageDraw.Draw(awayScoresImage) 
+
+	xCoorZeroed = 2
+	fontYValue = -1
+	#OVERALL_GAME_SCORE_HOME
+	#OVERALL_GAME_SCORE_AWAY
+
+	for inning in range(curr_inning-8, curr_inning) :
+
+		if(len(str(inning)) > 1) : #center double digit innings
+			draw.text((xCoorZeroed-2,fontYValue), str(OVERALL_GAME_SCORE_AWAY[inning]), fill=(255,255,255), font=inningFonts)
+		else :
+			draw.text((xCoorZeroed, fontYValue), str(OVERALL_GAME_SCORE_AWAY[inning]), fill=(255,255,255), font=inningFonts)
+
+		xCoorZeroed = xCoorZeroed + 8
+
+
+	homeScoresImage = Image.new("RGB", (72, 7)) #create image for the innings
+	drawHomeScores = ImageDraw.Draw(homeScoresImage) 
+
+	xCoorZeroed = 2
+	fontYValue = -1
+	#OVERALL_GAME_SCORE_HOME
+	#OVERALL_GAME_SCORE_AWAY
+
+	for inning in range(curr_inning-8, curr_inning) :
+
+		if(len(str(inning)) > 1) : #center double digit innings
+			draw.text((xCoorZeroed-2,fontYValue), str(OVERALL_GAME_SCORE_HOME[inning]), fill=(255,255,255), font=inningFonts)
+		else :
+			draw.text((xCoorZeroed, fontYValue), str(OVERALL_GAME_SCORE_HOME[inning]), fill=(255,255,255), font=inningFonts)
+
+		xCoorZeroed = xCoorZeroed + 8
+
+
+	#place the updates
+	matrix.SetImage(newInningsImage, 14, 2)
+	matrix.SetImage(awayScoresImage, 14, 10)
+	matrix.SetImage(homeScoresImage, 14, 18)
+
+
 
 def draw_new_inning_score(curr_inning, new_score, team) :
 
