@@ -50,8 +50,8 @@ CURRENT_TEAM_AWAY_STATS = {
 }
 
 #putting these the same will return game of the day for that team
-HOME_TEAM = 'Yankees' 
-AWAY_TEAM = 'Yankees'
+HOME_TEAM = 'Astros' 
+AWAY_TEAM = 'Astros'
 
 def refresh_day_time() : #refresh the current day
 
@@ -401,14 +401,19 @@ def post_game() :
 
 	#game_info = mlbgame.day(today_year,today_month,today_day, HOME_TEAM, AWAY_TEAM)
 	
-	while(game_info[0].game_status == "FINAL") :
-		if(debug) : print("FINAL SCORE: [" + str(status_of_game.home_team_runs) + "][" + str(status_of_game.away_team_runs) + "]")
-		init_post_game_board(str(status_of_game.home_team_runs), str(status_of_game.away_team_runs), team_abrev[status_of_game.home_team_name], team_abrev[status_of_game.away_team_name])
-		time.sleep(1800) #check every 30 mins
-		refresh_day_time()
-		game_info = mlbgame.day(today_year,today_month,today_day, HOME_TEAM, AWAY_TEAM)
+	if(debug) : print("FINAL SCORE: [" + str(status_of_game.home_team_runs) + "][" + str(status_of_game.away_team_runs) + "]")
+	init_post_game_board(str(status_of_game.home_team_runs), str(status_of_game.away_team_runs), team_abrev[status_of_game.home_team_name], team_abrev[status_of_game.away_team_name])
+	time.sleep(1800) #check every 30 mins
+
+	#while(game_info[0].game_status == "FINAL") :
+	#	if(debug) : print("FINAL SCORE: [" + str(status_of_game.home_team_runs) + "][" + str(status_of_game.away_team_runs) + "]")
+	#	init_post_game_board(str(status_of_game.home_team_runs), str(status_of_game.away_team_runs), team_abrev[status_of_game.home_team_name], team_abrev[status_of_game.away_team_name])
+	#	time.sleep(1800) #check every 30 mins
+	#	refresh_day_time()
+	#	game_info = mlbgame.day(today_year,today_month,today_day, HOME_TEAM, AWAY_TEAM)
 
 def no_game() :
+	init_off_day_board(HOME_TEAM)
 	if(debug) : print("Off day")
 	time.sleep(1800)
 	
@@ -508,6 +513,7 @@ def new_game_status() :
 	if(debug) : print("determining where to start: ")
 
 	while(True) :
+		refresh_day_time()
 		game_info = mlbgame.day(today_year,today_month,today_day, HOME_TEAM, AWAY_TEAM)
 		
 		if not game_info : no_game() #if there are no games today
@@ -592,11 +598,11 @@ def main():
 	#	init_board('H0U', 'TEX')
 	#	time.sleep(30)
 
-
 	#check if any games today
 	game_info = mlbgame.day(today_year,today_month,today_day, HOME_TEAM, AWAY_TEAM)		
 	if not game_info : # if there are no games today
-		no_game()
+
+		no_game() 
 		new_game_status()
 
 	before_game() #initialize the board
