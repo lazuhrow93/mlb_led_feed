@@ -134,6 +134,17 @@ def init_post_game_board(homeScore, awayScore, homeTeam, awayTeam) :
 	matrix.Clear()
 	matrix.SetImage(image, 0, 0)
 
+def init_off_day_board(teamName) : 
+
+	image = Image.new("RGB", (128, 32))  # Can be larger than matrix if wanted!!
+	draw = ImageDraw.Draw(image)  # Declare Draw instance before prims
+
+	teamNamesFont = ImageFont.truetype('Virtual Pet Sans.otf', size = 8)
+
+	draw.text((15, 10), teamName + ' OFF DAY', fill=(255, 255, 0), font=teamNamesFont)
+
+	matrix.Clear() #clear the matrix since nothing to display
+	matrix.SetImage(image, 0, 0) #display no game
 
 def draw_new_extra_innings_score(curr_inning, curr_home_scores, curr_away_scores) :
 
@@ -198,8 +209,6 @@ def draw_new_extra_innings_score(curr_inning, curr_home_scores, curr_away_scores
 	matrix.SetImage(newInningsImage, 14, 2)
 	matrix.SetImage(awayScoresImage, 14, 10)
 	matrix.SetImage(homeScoresImage, 14, 18)
-
-
 
 def draw_new_inning_score(curr_inning, new_score, team) :
 
