@@ -23,7 +23,7 @@ def init_board (homeTeam, awayTeam) :
 	image = Image.new("RGB", (128, 32))  # Can be larger than matrix if wanted!!
 	draw = ImageDraw.Draw(image)  # Declare Draw instance before prims
 
-	#####################################################################
+	##################################################################### test edit
 	#initialze scoreboard template 
 	draw.rectangle((-1, 1, 112, 25), fill=(0, 0, 0), outline=(255, 255, 0))
 	draw.line((86, 1, 86, 25), fill=(255, 255, 0))
