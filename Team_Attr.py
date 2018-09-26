@@ -12,7 +12,7 @@ team_abrev = {
 	'Rockies'	:'C0L',
 	'Braves'	:'ATL',
 	'Rangers'	:'TEX',
-	'Blue jays'	:'T0R',
+	'Blue Jays'	:'T0R',
 	'Cardinals'	:'STL',
 	'D-backs'	:'ARI',
 	'Twins'		:'MiN',
