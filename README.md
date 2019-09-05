@@ -1,9 +1,9 @@
 # MLB_LED_FEED
 Welcome to this project.
 
-![alt text](https://imgur.com/tskKKh1)
-![alt text](https://imgur.com/pOaNdky)
-![alt text](https://imgur.com/q7W4BqL)
+![Step1](https://imgur.com/tskKKh1)
+![Step2](https://imgur.com/pOaNdky)
+![Step3](https://imgur.com/q7W4BqL)
 
 
 The program starts in the file main.py and displays the current score board of a baseball game real time. It will be able to display, on a 128x32 LED matrix (two 64x32 chained together), the scores per inning, how many current outs, current strikes, current balls, current inning (also top or bottom), baserunners, each teams runs, hits and errors.
